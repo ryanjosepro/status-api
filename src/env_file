@@ -1,0 +1,8 @@
+module.exports = {
+    db: {
+        user: '',
+        password: '',
+        database: ''
+    },
+    authSecret: ''
+}
