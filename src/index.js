@@ -1,19 +1,5 @@
-const consign = require('consign');
+const server = require('./server');
 
-const app = require('express')();
-
-app.db = require('./config/db.js');
-
-consign()
-    .include('./src/config/passport.js')
-    .then('./src/config/middlewares.js')
-    .then('./src/utils')
-    .then('./src/api')
-    .then('./src/config/routes.js')
-    .into(app);
-
-const port = 3030;
-
-app.listen(port, () => {
+server(3030, () => {
     console.log('Running on http://localhost:' + port);
 });
