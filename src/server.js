@@ -1,4 +1,4 @@
-module.exports = (port, callback) => {
+module.exports = (port) => {
     const consign = require('consign');
 
     const app = require('express')();
@@ -13,5 +13,7 @@ module.exports = (port, callback) => {
         .then('./src/config/routes.js')
         .into(app);
 
-    app.listen(port, callback);
+    app.listen(port, () => {
+        console.log('Running on http://localhost:' + port);
+    });
 }
