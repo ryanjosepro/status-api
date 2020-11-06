@@ -1,9 +1,10 @@
 module.exports = app => {
+    const general = app.src.utils.general;
     const auth = app.src.utils.auth;
     const security = app.src.utils.security;
     const {existsOrError, notExistsOrError, onlyNumbersOrError} = app.src.utils.validation;
 
-    const signup = async (rq, rs) => {
+    const register = async (rq, rs) => {
         const userParams = ['username','email','password','firstname','lastname'];
 
         let user = general.extractObjectParams({...rq.body}, userParams);
@@ -29,7 +30,7 @@ module.exports = app => {
         .catch(err => rs.status(500).json({status: 'ERROR', msg: err.detail}).send());
     }
 
-    const signin = async (rq, rs) => {
+    const login = async (rq, rs) => {
         let user = {...rq.body};
         let userFromDb = {};
 
@@ -86,5 +87,5 @@ module.exports = app => {
         rs.send(false);
     }
 
-    return {signup, signin, validate};
+    return {register, login, validate};
 }
